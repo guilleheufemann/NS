@@ -52,9 +52,10 @@
 		<div class="header clearfix">
 			<h3 class="text-muted">d3-heatmap2</h3>
 		</div>
-		<div id="chart"></div>
-		<hr>
 		<div id="details"></div>
+		<hr>
+		<div id="chart"></div>
+		
 	</div>
 
 	<!-- D3.js -->
@@ -105,15 +106,15 @@
 			}
 		}
 
-		d3.json("NS_LoPrado_1t2016.json", function(error, data) {
+		d3.json("https://guilleheufemann.github.io/NS/NS_LoPrado_1t2016.json", function(error, data) {
 			if (error) return console.warn(error)
 			function onClick(d, i, j) {
-				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count " + d)
+				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count: " + d)
 				select([i, j])
 			}
 
 			function onMouseOver(d, i, j) {
-				document.getElementById("details").innerHTML = "time: " + data.columns[i] + ", range: " + data.rows[j] + ", count: " + d
+				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + ", Hora: " + data.rows[j] + ", Nivel de Servicio: " + d
 				hover([i, j])
 			}
 		
@@ -122,23 +123,23 @@
 				.subtitle("")
 				.legendLabel("Count")
 				.width(900)
-				.xAxisScale([0,23])
-				.yAxisScale([0,91])
-				// .xAxisLabels(data.columns)
-				// .yAxisLabels(data.rows)
+				.xAxisScale([1,91])
+				.yAxisScale([0,24])
+				 //.xAxisLabels(data.columns)
+				 //.yAxisLabels(data.rows)
 				.highlightColor('#936EB5')
 				.highlightOpacity('0.4')
-				.onClick(onClick)
+				//.onClick(onClick)
 				.onMouseOver(onMouseOver)
 				.colorScale(d3.scaleLinear()
-					.domain([0, 5])
-					.range(['#F5F5DC', '#E50914'])
+					.domain([0, 1, 2, 3, 4])
+					.range(['#099619','#099619','#f5f907','#E50914', '#E50914'])
 				)
 				.margin({
 					top: 40,
 					right: 0,
 					bottom: 10,
-					left: -20
+					left: 0
 				})
 				
 			d3.select("#chart")
