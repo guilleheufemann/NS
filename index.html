@@ -105,7 +105,7 @@
 			}
 		}
 
-		d3.json("data.json", function(error, data) {
+		d3.json("NS_LoPrado_2016.json", function(error, data) {
 			if (error) return console.warn(error)
 			function onClick(d, i, j) {
 				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count " + d)
@@ -122,8 +122,8 @@
 				.subtitle("")
 				.legendLabel("Count")
 				.width(900)
-				.xAxisScale([0,121])
-				.yAxisScale([106,1999])
+				.xAxisScale([0,23])
+				.yAxisScale([0,365])
 				// .xAxisLabels(data.columns)
 				// .yAxisLabels(data.rows)
 				.highlightColor('#936EB5')
@@ -131,7 +131,7 @@
 				.onClick(onClick)
 				.onMouseOver(onMouseOver)
 				.colorScale(d3.scaleLinear()
-					.domain([0, 65 / 2, 65])
+					.domain([0, 5 / 2, 5])
 					.range(['#F5F5DC', '#FF5032', '#E50914'])
 				)
 				.margin({
