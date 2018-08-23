@@ -105,7 +105,7 @@
 			}
 		}
 
-		d3.json("NS_LoPrado_2016.json", function(error, data) {
+		d3.json("NS_LoPrado_1t2016.json", function(error, data) {
 			if (error) return console.warn(error)
 			function onClick(d, i, j) {
 				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count " + d)
@@ -123,7 +123,7 @@
 				.legendLabel("Count")
 				.width(900)
 				.xAxisScale([0,23])
-				.yAxisScale([0,365])
+				.yAxisScale([0,91])
 				// .xAxisLabels(data.columns)
 				// .yAxisLabels(data.rows)
 				.highlightColor('#936EB5')
