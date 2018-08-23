@@ -31,7 +31,7 @@ var heatmap = function () {
   var xAxisScale = null;
   var yAxisScale = null;
   var xAxisTickFormat = d3.format('.0f');
-  var yAxisTickFormat = d3.format('.2s');
+  var yAxisTickFormat = d3.format('.0f');
 
   var xAxisLabels = null;
   var yAxisLabels = null;
