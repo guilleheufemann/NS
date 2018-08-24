@@ -54,7 +54,8 @@
 		</div>
 		<div id="details"></div>
 		<hr>
-		<div id="chart"></div>
+		<div id="chart1"></div>
+		<div id="chart2"></div>
 		
 	</div>
 
@@ -86,7 +87,7 @@
 			}
 		}
 
-		function hover(cell) {
+		/*function hover(cell) {
 			if (selectStart && !selectEnd) {
 				if (cell[0] > selectStart[0]) { // column is higher
 					chart.setHighlight([{"start": selectStart, "end": cell}])
@@ -104,27 +105,34 @@
 					chart.updateHighlight()
 				}
 			}
-		}
+		}*/
 
-		d3.json("https://guilleheufemann.github.io/NS/NS_LoPrado_1t2016.json", function(error, data) {
+		d3.json("https://guilleheufemann.github.io/NS/NS_LoPrado_1s2016.json", function(error, data) {
 			if (error) return console.warn(error)
 			function onClick(d, i, j) {
 				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count: " + d)
 				select([i, j])
 			}
-
+			function NS(ns){
+			if(ns==0) return "A"
+			else if(ns==1) return "B"
+			else if(ns==2) return "C"
+			else if(ns==3) return "D"
+			else if(ns==4) return "E"
+			else if(ns==5) return "F"
+			else return "G"}
 			function onMouseOver(d, i, j) {
-				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + ", Hora: " + data.rows[j] + ", Nivel de Servicio: " + d
-				hover([i, j])
+				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + ", Hora: " + data.rows[j] + ", Nivel de Servicio: " + NS(d)
+				//hover([i, j])
 			}
 		
 			chart = d3.heatmap()
 				.title("")
-				.subtitle("")
+				.subtitle("NS_LoPrado1s2016")
 				.legendLabel("Count")
-				.width(900)
-				.xAxisScale([1,91])
-				.yAxisScale([0,24])
+				.width(500)
+				//.xAxisScale([1,91])
+				//.yAxisScale([24,1])
 				 //.xAxisLabels(data.columns)
 				 //.yAxisLabels(data.rows)
 				.highlightColor('#936EB5')
@@ -136,16 +144,66 @@
 					.range(['#099619','#099619','#f5f907','#E50914', '#E50914'])
 				)
 				.margin({
-					top: 40,
+					top: 30,
 					right: 0,
 					bottom: 10,
 					left: 0
 				})
+				.hideLegend(true)
 				
-			d3.select("#chart")
+			d3.select("#chart1")
 				.datum(data.values)
 				.call(chart)
-		})
+					
+		});
+		d3.json("https://guilleheufemann.github.io/NS/NS_LoPrado_2s2016.json", function(error, data) {
+			if (error) return console.warn(error)
+			function onClick(d, i, j) {
+				console.info("Clicked on range " + data.rows[j] + ", time " + data.columns[i] + ", count: " + d)
+				select([i, j])
+			}
+			function NS(ns){
+			if(ns==0) return "A"
+			else if(ns==1) return "B"
+			else if(ns==2) return "C"
+			else if(ns==3) return "D"
+			else if(ns==4) return "E"
+			else if(ns==5) return "F"
+			else return "G"}
+			function onMouseOver(d, i, j) {
+				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + "</b>Hora: " + data.rows[j] + "</b>Nivel de Servicio: " + NS(d)
+				//hover([i, j])
+			}
+		
+			chart = d3.heatmap()
+				//.title("")
+				//.subtitle("NS_LoPrado1s2016")
+				.legendLabel("Count")
+				.width(500)
+				//.xAxisScale([1,91])
+				//.yAxisScale([24,1])
+				 //.xAxisLabels(data.columns)
+				 //.yAxisLabels(data.rows)
+				.highlightColor('#936EB5')
+				.highlightOpacity('0.4')
+				//.onClick(onClick)
+				.onMouseOver(onMouseOver)
+				.colorScale(d3.scaleLinear()
+					.domain([0, 1, 2, 3, 4])
+					.range(['#099619','#099619','#f5f907','#E50914', '#E50914'])
+				)
+				.margin({
+					top: 0,
+					right: 0,
+					bottom: 10,
+					left: 0
+				})
+				.hideLegend(true)
+				
+			d3.select("#chart2")
+				.datum(data.values)
+				.call(chart)
+		})		
 	</script>
 </body>
 </html>
