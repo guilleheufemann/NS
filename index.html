@@ -50,12 +50,13 @@
 <body>
 	<div class="container">
 		<div class="header clearfix">
-			<h3 class="text-muted">d3-heatmap2</h3>
+			<h3 class="text-muted">Niveles de Servicio en Peaje</h3>
 		</div>
-		<div id="details"></div>
-		<hr>
+		
 		<div id="chart1"></div>
 		<div id="chart2"></div>
+		<hr>
+		<div id="details"></div>
 		
 	</div>
 
@@ -122,7 +123,7 @@
 			else if(ns==5) return "F"
 			else return "G"}
 			function onMouseOver(d, i, j) {
-				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + ", Hora: " + data.rows[j] + ", Nivel de Servicio: " + NS(d)
+				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + "<br>Hora: " + data.rows[j] + "<br>Nivel de Servicio: " + NS(d)
 				//hover([i, j])
 			}
 		
@@ -171,7 +172,7 @@
 			else if(ns==5) return "F"
 			else return "G"}
 			function onMouseOver(d, i, j) {
-				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + "</b>Hora: " + data.rows[j] + "</b>Nivel de Servicio: " + NS(d)
+				document.getElementById("details").innerHTML = "Dia: " + data.columns[i] + "<br>Hora: " + data.rows[j] + "<br>Nivel de Servicio: " + NS(d)
 				//hover([i, j])
 			}
 		
